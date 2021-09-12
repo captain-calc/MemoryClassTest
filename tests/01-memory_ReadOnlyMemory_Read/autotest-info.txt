@@ -1,0 +1,4 @@
+The hash is not the same as the hash for the OS screen after running
+os_ClrHomeFull() and os_PutStrLine("True"). The autotester says this
+is the expected hash for the unit test even when I manually verified
+that the test ran successfully.
