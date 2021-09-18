@@ -1,5 +1,5 @@
 // Name:    Captain Calc
-// Date:    September 9, 2021
+// Date:    September 18, 2021
 // File:    abc_memory.h
 // Purpose: This file provides the abstract data classes that represent
 //          read-only, read-write, and "variable" memory.
@@ -21,17 +21,53 @@
 #include <stdint.h>
 
 
-#define ROM_MIN_ADDRESS  ((uint8_t *)0x000000)
-#define ROM_MAX_ADDRESS  ((uint8_t *)0x400000)
-#define ROM_SIZE         ((size_t)ROM_MAX_ADDRESS)
+// Defines for the layout of system memory.
+// "Ports" is an unofficial name for that area of memory.
+#define ROM_MIN_ADDRESS    ((uint8_t *)0x000000)
+#define ROM_MAX_ADDRESS    ((uint8_t *)0x400000)
+#define ROM_SIZE           ((uint24_t)ROM_MAX_ADDRESS)
 
-#define RAM_MIN_ADDRESS  ((uint8_t *)0xd00000)
-#define RAM_MAX_ADDRESS  ((uint8_t *)0xd65000)
-#define RAM_SIZE         ((size_t)(RAM_MAX_ADDRESS - RAM_MIN_ADDRESS))
+#define RAM_MIN_ADDRESS    ((uint8_t *)0xd00000)
+#define RAM_MAX_ADDRESS    ((uint8_t *)0xd65000)
+#define RAM_SIZE           ((uint24_t)(RAM_MAX_ADDRESS - RAM_MIN_ADDRESS))
 
 #define PORTS_MIN_ADDRESS  ((uint8_t *)0xe00000)
 #define PORTS_MAX_ADDRESS  ((uint8_t *)0xffffff)
-#define PORTS_SIZE         ((size_t)(PORTS_MAX_ADDRESS - PORTS_MIN_ADDRESS))
+#define PORTS_SIZE         ((uint24_t)(PORTS_MAX_ADDRESS - PORTS_MIN_ADDRESS))
+
+
+// Description: ABC_ReadOnlyMemory (parameterized constructor) creates a new
+//              instance of the class.
+// Pre:         <addr> + <size> must not overflow and both variables must
+//              correspond to a valid memory area.
+// Post:        New instance of ABC_ReadOnlyMemory created.
+
+
+// Description: Read() reads a number of bytes from an offset in the memory
+//              area.
+// Pre:         <offset> must be less than or equal to the memory size.
+//              <offset> + <size> must not extend beyond the memory area.
+//              <size> must be equal to or less than the size of <data>.
+// Post:        <size> bytes read from <offset> into <data>.
+
+
+// Description: ReadByte() reads a byte from an offset in the memory area.
+// Pre:         <offset> must be less than or equal to the memory size - 1.
+// Post:        Byte at <offset> returned.
+
+
+// Description: FindAll() finds a byte sequence in a memory range within the
+//              memory area starting at an offset.
+// Pre:         <max_matches> must be the size of the <matches> array.
+//              <len> must be the size of the <seq> array.
+//              <offset> must be less than the memory size.
+// Post:        <matches> holds pointers to all matching byte sequences in the
+//              given range of memory. Number of pointers in <matches> returned.
+
+
+// Description: ~ABC_ReadOnlyMemory() destroys an ABC_ReadOnlyMemory instance.
+// Pre:         None
+// Post:        Class instance destroyed.
 
 
 class ABC_ReadOnlyMemory
@@ -63,6 +99,9 @@ class ABC_ReadOnlyMemory
 };
 
 
+// This structure describes a byte sequence in a memory area.
+// Pre: <offset> must be less than the memory size.
+//      <offset> + <size> must not extend beyond the memory area.
 typedef struct
 {
   uint24_t offset;
