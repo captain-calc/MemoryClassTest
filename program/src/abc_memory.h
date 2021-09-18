@@ -104,9 +104,12 @@ class ABC_ReadOnlyMemory
 //      <offset> + <size> must not extend beyond the memory area.
 typedef struct
 {
-  uint24_t offset;
-  uint24_t size;
+  uint24_t m_Offset;
+  uint24_t m_Size;
 } byte_seq_t;
+
+
+// TODO: Add documentation
 
 
 class ABC_ReadWriteMemory: public ABC_ReadOnlyMemory
@@ -151,6 +154,9 @@ class ABC_ReadWriteMemory: public ABC_ReadOnlyMemory
 
     virtual ~ABC_ReadWriteMemory() = default;
 };
+
+
+// TODO: Add documentation
 
 
 class ABC_VariableMemory : public ABC_ReadWriteMemory
