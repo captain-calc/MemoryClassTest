@@ -7,10 +7,21 @@
 
 // TYPES OF ABSTRACT MEMORY CLASSES
 //
-//     "read-only"  = Only allows reading bytes out of the memory.
-//     "read-write" = Allows both reading from and writing to the memory.
-//     "variable"   = Allows reading from, writing to, and inserting bytes into
-//                    the memory.
+// Term         | Class Name          | Definition
+// -------------+---------------------+-----------------------------------------
+// "read-only"  | ABC_ReadOnlyMemory  | Only allows reading bytes out of the
+//              |                     | memory.
+// -------------+---------------------+-----------------------------------------
+// "read-write" | ABC_ReadWriteMemory | Allows both reading from and writing to
+//              |                     | the memory.
+// -------------+---------------------+-----------------------------------------
+// "variable"   | ABC_VariableMemory  | Allows reading from, writing to, and
+//              |                     | inserting bytes into the memory.
+//
+//
+//     ABC_ReadOnlyMemory would apply to the calculator's ROM,
+// ABC_ReadWriteMemory would apply to RAM, and ABC_VariableMemory would apply to
+// programs, appvars, TI variables and so on.
 //
 
 

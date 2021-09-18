@@ -1,7 +1,8 @@
 // Name:    Captain Calc
-// Date:    September 9, 2021
+// Date:    September 18, 2021
 // File:    memory.h
-// Purpose: TODO
+// Purpose: This file declares the derived wrapper classes for the base classes
+//          declared in abc_memory.h.
 
 
 #ifndef MEMORY_H
