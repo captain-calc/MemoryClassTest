@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Date:    September 11, 2021
+# Date:    September 18, 2021
 # Version: 0.0.2
+
+# Credits to Dr. Patrick Taylor for the original testing framework that this
+# script is based on.
+
 
 # Console output colors
 BLACK=$(tput setaf 0)
@@ -124,11 +128,20 @@ run_tests()
 
 
 # Main code execution starts here
-#=================================
+# =================================
 
 
 # Clear the console
 tput reset
+
+
+# Terminate early if the script is run in an incompatible OS.
+if [ ! "$(uname)" = Linux ]
+then
+    echo "This script can only run on Linux."
+    exit 1
+fi
+
 
 # Store the path to the tests
 tests_path=$1

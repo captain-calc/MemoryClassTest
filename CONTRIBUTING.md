@@ -63,6 +63,8 @@ All fields should be lined up one space away from the longest line.
 
 ### C++ Class Declarations
 
+Class names should be in camel-case.
+
 `private` precedes `protected` which precedes `public`.
 
 All non-`const` class variables should have the prefix `m_`, the first letter of the variable capitalized, and the rest of the variable in camel-case. All `const` variables should be prefixed with `m_` and be in uppercase snake-case. The `m_` prefix helps the programmer identify which variables are member variables.
@@ -88,21 +90,21 @@ All non-`const` variables should be in lowercase snake-case. `const` variables s
 
 ### Tests' Location
 
-Tests should go into the tests/ directory.
+Tests should go into the `tests/` directory.
 
 
 ### Test Naming
 
 Test names follow this format:
 
-`<test id>-<name of file that contains the function being tested>_<class name (if function is a member function)>_<function name>`
+`<test-id>-<file-name>_<class-name>_<function-name>`
 
 
 | Placeholder       | Description
 | ----------------- | ------------------------
 | **test-id**       | A unique two-digit number. This gives a unique id to each test in the list and orders the list of tests in a file explorer.
-| **name of file**  | The name of the source file that contains the function's *declaration*.
-| **class name**    | If the function is a member function, specify the class.
-| **function name** | Name of the function.
+| **file-name**  | The name of the source file that contains the function's *declaration*.
+| **class-name**    | If the function is a member function, specify the class.
+| **function-name** | Name of the function.
 
 
