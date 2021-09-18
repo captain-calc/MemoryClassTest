@@ -94,6 +94,7 @@ Tests should go into the tests/ directory.
 ### Test Naming
 
 Test names follow this format:
+
 `<test id>-<name of file that contains the function being tested>_<class name (if function is a member function)>_<function name>`
 
 
