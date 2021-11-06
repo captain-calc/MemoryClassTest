@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Date:    September 18, 2021
-# Version: 0.0.2
+# Version: 0.0.3
 
 # Credits to Dr. Patrick Taylor for the original testing framework that this
 # script is based on.
@@ -44,19 +44,19 @@ output_subsection()
 build_tests()
 {
   tests_path=$1
-  
+
   echo -e "\nBuilding unit tests..."
   output_section
-  
+
   for test in $(ls $tests_path)
   do
     test_abs_path="$tests_path/$test"
-  
+
     if [ -d "$test_abs_path" ]
     then
       echo -e "\n\nCompiling: $CYAN $test $RESET"
       output_subsection
-    
+
       # Add the "test_util.h" to each test's main file so it can access program
       # functions.
       python3 .runtests/test_util_include.py "$test_abs_path/src/main.cpp" 2
@@ -64,7 +64,7 @@ build_tests()
       # Make sure each makefile has the correct EXTRA_CPPSOURCES and
       # EXTRA_ASMSOURCES.
       python3 .runtests/extra_sources_makefile.py $test_abs_path $2
-    
+
       # Spawn a new shell so we preserve our current working directory and
       # build each test program.
       (
@@ -86,20 +86,20 @@ run_tests()
   total_num_tests=0
   num_tests_passed=0
   autotest_file="autotest.json"
-  
+
   echo -e "\nRunning unit tests..."
   output_section
-  
+
   for test in $(ls $tests_path)
   do
-  
+
     test_abs_path="$tests_path/$test"
-    
+
     if [ -d "$test_abs_path" ]
     then
       echo -e "\n\nRunning: $CYAN $test $RESET"
       output_subsection
-      
+
       # Write the appropriate ROM path to the autotest file if necessary.
       python3 .runtests/autotest_rom_path.py "$test_abs_path/$autotest_file" $2
 
@@ -123,7 +123,7 @@ run_tests()
   output_section
   echo "$num_tests_passed out of $total_num_tests tests passed."
   percentage=$(awk "BEGIN { printf \"%.2f\", 100*$num_tests_passed/$total_num_tests}")
-  echo -e "Finished running unit tests ($percentage% coverage).\n"
+  echo -e "Finished running tests ($percentage% successful).\n"
 }
 
 

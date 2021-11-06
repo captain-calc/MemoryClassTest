@@ -1,7 +1,8 @@
 // Name:    Captain Calc
-// Date:    September 11, 2021
+// Date:    November 6, 2021
 // File:    ccdbg.h
 // Purpose: ccdbg provides macros for pretty-printing variable values.
+// Version: 0.0.2
 
 
 #ifndef CCDBG_H
@@ -123,6 +124,29 @@ extern unsigned int g_ccdbg_chkpt_indent;
       dbg_sprintf(dbgout, " ");                               \
     }                                                         \
     dbg_sprintf(dbgout,"= %s\n", varname);                    \
+  } while (0)
+
+
+#define CCDBG_DUMP_BIN(varname, type)                          \
+  do {                                                         \
+    CCDBG_PRINT_CHKPT_INDENT;                                  \
+    dbg_sprintf(dbgout, "  %s", #varname);                     \
+    for (int i = VALUE_INDENT - strlen(#varname); i > 0; i--)  \
+    {                                                          \
+      dbg_sprintf(dbgout, " ");                                \
+    }                                                          \
+    dbg_sprintf(dbgout, "= ");                                 \
+    char b_char;                                               \
+    for (int byte = sizeof(#type) - 1; byte > -1; byte--)      \
+    {                                                          \
+      b_char = ((varname & (1 << byte)) ? '1' : '0');          \
+      dbg_sprintf(dbgout, "%c", b_char);                       \
+      if (!(byte % 4))                                         \
+      {                                                        \
+        dbg_sprintf(dbgout, " ");                              \
+      }                                                        \
+    }                                                          \
+    dbg_sprintf(dbgout,"\n");                                  \
   } while (0)
 
 #endif
