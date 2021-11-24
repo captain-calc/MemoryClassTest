@@ -63,9 +63,7 @@ int main(void)
     ti_Delete("HexaTest");
   }
 
-#if DEBUG
-  CCDBG_DUMP_INT(test_succeeded);
-#endif
+CCDBG_DUMP_INT(test_succeeded);
   
   print_test_results(test_succeeded);
   return 0;

@@ -75,9 +75,7 @@ int main(void)
   uint8_t data_num = 0;
 
 
-#if DEBUG
-  CCDBG_CHKPT_START("main");
-#endif
+CCDBG_CHKPT_START("main");
 
   
   if ((slot = ti_OpenVar("HEXAEDIT", "r", TI_PPRGM_TYPE)))
@@ -127,10 +125,8 @@ int main(void)
         data[data_num]->m_Range
       );
 
-#if DEBUG
-  CCDBG_DUMP_INT(num_matches);
-  CCDBG_DUMP_INT(data[data_num]->m_NumMatches);
-#endif
+CCDBG_DUMP_INT(num_matches);
+CCDBG_DUMP_INT(data[data_num]->m_NumMatches);
 
       if (num_matches != data[data_num]->m_NumMatches)
       {
@@ -166,10 +162,8 @@ int main(void)
   }
 
 
-#if DEBUG
-  CCDBG_DUMP_INT(test_succeeded);
-  CCDBG_CHKPT_END;
-#endif
+CCDBG_DUMP_INT(test_succeeded);
+CCDBG_CHKPT_END;
 
   print_test_results(test_succeeded);
   return 0;

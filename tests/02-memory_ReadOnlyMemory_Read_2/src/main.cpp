@@ -29,9 +29,7 @@ int main(void)
   ReadOnlyMemory rom(PORTS_MIN_ADDRESS, PORTS_SIZE);
   
 
-#ifdef DEBUG
-  CCDBG_PRINT_MSG("First Ports read");
-#endif
+CCDBG_PRINT_MSG("First Ports read");
 
 
   // First, an irrational offset.
@@ -44,10 +42,8 @@ int main(void)
   }
 
 
-#ifdef DEBUG
-  CCDBG_DUMP_INT(test_succeeded);
-  CCDBG_PRINT_MSG("Second Ports read");
-#endif
+CCDBG_DUMP_INT(test_succeeded);
+CCDBG_PRINT_MSG("Second Ports read");
 
   // Second, a rational offset and a rational size that sum to an irrational
   // read location.
@@ -73,10 +69,8 @@ int main(void)
   ReadOnlyMemory rom_two(((uint8_t *)0x000000), ((uint24_t)0xd00000 - 0x000000));
 
 
-#ifdef DEBUG
-  CCDBG_DUMP_INT(test_succeeded);
-  CCDBG_PRINT_MSG("First custom read");
-#endif
+CCDBG_DUMP_INT(test_succeeded);
+CCDBG_PRINT_MSG("First custom read");
 
 
   // 0xc00000 < 0xd00000, so the offset is valid.
@@ -90,9 +84,7 @@ int main(void)
   }
 
 
-#ifdef DEBUG
-  CCDBG_DUMP_INT(test_succeeded);
-#endif
+CCDBG_DUMP_INT(test_succeeded);
 
 
   print_test_results(test_succeeded);
